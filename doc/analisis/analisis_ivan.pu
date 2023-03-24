@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+actor "Usuario" as user
+
+rectangle Calculadora {
+    usecase "Sumar enteros" as UC1
+    usecase "Sumar reales" as UC2
+    usecase "Restar reales" as UC3
+    usecase "Multiplicaciónu reales" as UC4
+    usecase "Dividir reales" as UC5
+
+    user --> UC1
+    user --> UC2
+    user --> UC3
+    user --> UC4
+    user --> UC5
+}
+@enduml
