@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+actor User
+rectangle Calculadora{
+    usecase "Sumar" as s
+    usecase "Restar" as r
+    usecase "Multiplicar" as m
+    usecase "Dividir" as d
+    usecase "Solicitar Histórico" as sh
+    usecase "Sumar Enteros" as se
+    usecase "Sumar Reales" as sr
+
+    User -- s
+    User -- r
+    User -- m
+    User -- d
+    User -- sh
+
+    s <|-- se
+    s <|-- sr
+}
+@enduml
