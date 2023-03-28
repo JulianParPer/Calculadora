@@ -1,0 +1,32 @@
+@startuml primerNivel
+left to right direction
+[Aplicación]
+
+[Calculadora]
+
+[IOUtilidades]
+
+[Historial]
+
+[Aplicación] ..> [IOUtilidades]:use
+[Aplicación] ..> [Calculadora]:use
+[Aplicación] ..> [Historial]:use
+
+note right of [Aplicación]
+    Aplicación que pide los operandos 
+    y operador al usuario y muestra los
+    resultados
+end note
+
+note right of [Calculadora]
+    Este modulo contiene la lógica de
+    cálculo: sumas, restas, 
+    multiplicaciones y divisiones
+end note
+
+note right of [IOUtilidades]
+    Contiene herramientas que facilitan
+    la recogida de números por teclado
+    y su impresión en pantalla
+end note
+@enduml

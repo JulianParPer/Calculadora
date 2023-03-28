@@ -1,0 +1,35 @@
+@startuml segundoNivelCalculadora
+
+package es.dam.prog.calculadora {
+
+    abstract class Operando
+
+    class EnteroOperandos{
+        -operador1:int
+        -operador2:int
+
+    }
+    class RealOperandos{
+        -operador1:double
+        -operador2:double
+
+    }
+    Operando <|-- EnteroOperandos
+    Operando <|-- RealOperandos
+
+    interface Operacion{
+        +double calcular(operandos: RealOperandos)
+        +int calcular(operandos: EnteroOperandos)
+    }
+
+    class Suma
+    class Division
+
+    Operacion <|.. Suma
+    Operacion <|.. Division
+
+    class CalculadoraException
+
+    Operacion ..> CalculadoraException: throws
+}
+@enduml

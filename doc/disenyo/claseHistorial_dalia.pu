@@ -1,0 +1,24 @@
+@startuml segundoNivelCalculadora
+
+package es.dam.prog.historial {
+
+    class Operation {
+        - operador: Operando
+        - operador: char
+    }
+
+    class Historial {
+        + add(Operation)
+        + remove()
+        + list()
+    }
+
+    Operation --o Historial
+
+}
+
+class ArrayList
+
+Historial ..> ArrayList : use
+
+@enduml
