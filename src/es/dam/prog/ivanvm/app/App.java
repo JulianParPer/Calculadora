@@ -1,9 +1,8 @@
-package es.dam.prog.ivanvm;
+package es.dam.prog.ivanvm.app;
 
 import java.util.Scanner;
 
-import es.dam.prog.ivanvm.calculadora.Calculable;
-import es.dam.prog.ivanvm.calculadora.Calculadora;
+import es.dam.prog.ivanvm.calculadora.operaciones.Calculable;
 
 public class App {
 
@@ -30,6 +29,7 @@ public class App {
         final String INPUT_INT      = "Introduce un número entero: ";
         final String INPUT_DOUBLE   = "Introduce un número double: ";
         final String DESPEDIDA      = "¡Adiós!";
+        
         Calculable calc = new Calculadora();
 
         int opcion = imprimirMenu();

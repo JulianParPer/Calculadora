@@ -1,0 +1,133 @@
+@startuml primerNivel
+left to right direction
+[Aplicación]
+[Calculadora]
+[IOUtilidades]
+[Historico]
+
+[Aplicación] ..> [IOUtilidades]: use
+[Aplicación] ..> [Calculadora]: use
+[Aplicación] ..> [Historico]: use
+
+note right of [Aplicación]
+    Aplicación que pide los operandos 
+    y operador al usuario y muestra los
+    resultados
+end note
+
+note right of [Calculadora]
+    Este modulo contiene la lógica de
+    cálculo: sumas, restas, 
+    multiplicaciones y divisiones
+end note
+
+note right of [IOUtilidades]
+    Contiene herramientas que facilitan
+    la recogida de números por teclado
+    y su impresión en pantalla
+end note
+
+note right of [Historico]
+    Permite consultar el historial de
+    operaciones realizadas.
+end note
+@enduml
+
+@startuml segundoNivelCalculadora
+package es.dam.prog.calculadora {
+    interface Operacion {
+        +calcular(operandos: RealOperandos): double
+        +calcular(operandos: EnteroOperandos): int
+    }
+
+    abstract class Operando {}
+
+    class EnteroOperandos {
+        -operador1: int
+        -operador2: int
+    }
+
+    class RealOperandos {
+        -operador1: double
+        -operador2: double
+    }
+
+    class Suma {}
+    class Division {}
+    class CalculadoraException {}
+
+    Operando <|-- EnteroOperandos
+    Operando <|-- RealOperandos
+    Operacion <|.. Suma
+    Operacion <|.. Division
+    Operacion ..> CalculadoraException: throws
+
+    note right of Operacion
+        Todas las opciones de cálculo
+        son recogidas en esta interfaz:
+        suma, resta, división... Si quiero
+        añadir más, solo tendría que agregar
+        nuevas clases que implementen esta
+        interfaz.
+    end note
+
+    note right of Operando
+        Encapsula a los operandos, el el futuro
+        cambiaremos esta clase para que sea más
+        potente y flexible.
+    end note
+}
+note right of es.dam.prog.calculadora 
+    Este paquete contiene todos los artefactos
+    de programación del módulo/componente
+    calculadora            
+end note
+@enduml
+
+@startuml segundoNivelIOUtilidades
+package es.dam.prog.util.io {
+    class TecladoUtil {
+        +{static}leerEntero(): int
+        +{static}leerEntero(minimo: int, maximo: int): int
+        +{static}leerReal(): double
+        +{static}leerReal(minimo: int, maximo: int): double
+        +{static}leerCaracter(): char
+    }
+
+    class IOUtilException {}
+
+    TecladoUtil ..> IOUtilException: throws
+
+    note right of TecladoUtil
+        Encapsula todas las operaciones
+        relativas a las lecturas de datos
+        por teclado
+    end note
+}
+@enduml
+
+@startuml
+package es.dam.prog.historial {
+    class Operation {
+        -oper1: int
+        -oper2: int 
+        -operando: String
+    }
+
+    class Historico {
+        +add()
+        +remove()
+    }
+
+    Historico ..> ArrayList: use
+    Operation --* Historico
+}
+@enduml
+
+@startuml segundoNivelAplicacion
+package es.dam.prog.app {
+    class App {
+        +{static}main(args: String[])
+    }
+}
+@enduml
